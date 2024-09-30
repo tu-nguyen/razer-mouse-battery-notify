@@ -1,16 +1,24 @@
-# Mamba Wireless Battery Indicator
+# Viper V2 Pro Wireless Battery Notify
 
 ## Introduction
 
-![Notification Screenshot](.github/noti_screenshot.jpg?raw=true)<br>
+<!-- ![Notification Screenshot](.github/noti_screenshot.jpg?raw=true)<br>
 This is a script for **Windows** written in Python 3.10 that gets the battery level of a Razer Mamba Wireless and shows a tray notification.<br>
+Combining with the Task Scheduler, the notification can be regularly shown with self-defined interval (the default is a notification every 15 minutes). -->
+This is a script for **Windows** written in Python 3.12 that gets the battery level of a Razer Viper V2 Pro Wireless and send that info to a Home Assistant API.<br>
 Combining with the Task Scheduler, the notification can be regularly shown with self-defined interval (the default is a notification every 15 minutes).
 
 ## Instruction
 
 1. Clone this repository
-2. Go to the [website](https://libusb.info/) of `libusb` to download the Latest Windows Binaries
-3. In the `.7z` file downloaded, extract `\VS2019\MS64\dll\libusb-1.0.dll` to `C:\Windows\System32` and `\VS2019\MS32\dll\libusb-1.0.dll` to `C:\Windows\SysWOW64`
+2. Create .env
+3. Get libusb, either 3a or 3b
+  a. Auto-download from script
+    1. Un-comment "get_libusb()" from battery-notify.pyw
+    2. Must be ran at least once, can re-comment after
+  b. Original instruction
+    1. Go to the [website](https://libusb.info/) of `libusb` to download the Latest Windows Binaries
+    2. In the `.7z` file downloaded, extract `\VS2019\MS64\dll\libusb-1.0.dll` to `C:\Windows\System32` and `\VS2019\MS32\dll\libusb-1.0.dll` to `C:\Windows\SysWOW64`
 4. If you can run PowerShell script on your system, run `. .\mamba.ps1` in a PowerShell inside the directory
 5. Input a time interval in minutes, or press Enter for the default of 15 minutes when prompted
   * The script installs the needed Python packages and sets up the scheduled tasks with a 15-minute time interval
