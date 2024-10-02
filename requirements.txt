@@ -1,2 +1,2 @@
-pyusb==1.2.1
-win10toast==0.9
+request.==2.32.3
+py7zr==0.22.0
