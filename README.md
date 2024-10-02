@@ -6,17 +6,18 @@
 This is a script for **Windows** written in Python 3.10 that gets the battery level of a Razer Mamba Wireless and shows a tray notification.<br>
 Combining with the Task Scheduler, the notification can be regularly shown with self-defined interval (the default is a notification every 15 minutes). -->
 This is a script for **Windows** written in Python 3.12 that gets the battery level of a Razer Viper V2 Pro Wireless and send that info to a Home Assistant API.<br>
+For my local setup, Home Assistant has an automation that will send me either a sms or [discord notification](https://www.home-assistant.io/integrations/discord/).<br>
 Combining with the Task Scheduler, the notification can be regularly shown with self-defined interval (the default is a notification every 15 minutes).
 
 ## Instruction
 
 1. Clone this repository
-2. Create .env
+2. Create .env and fill with Home Assistant information
 3. Get libusb, either 3a or 3b
-  a. Auto-download from script
+  - 3a. Auto-download from script
     1. Un-comment "get_libusb()" from battery-notify.pyw
     2. Must be ran at least once, can re-comment after
-  b. Original instruction
+  - 3b. Original instruction
     1. Go to the [website](https://libusb.info/) of `libusb` to download the Latest Windows Binaries
     2. In the `.7z` file downloaded, extract `\VS2019\MS64\dll\libusb-1.0.dll` to `C:\Windows\System32` and `\VS2019\MS32\dll\libusb-1.0.dll` to `C:\Windows\SysWOW64`
 4. If you can run PowerShell script on your system, run `. .\mamba.ps1` in a PowerShell inside the directory
@@ -35,8 +36,8 @@ Combining with the Task Scheduler, the notification can be regularly shown with 
 | **Field**                 | **To Enter**                      | **Example**                             |
 |---------------------------|-----------------------------------|-----------------------------------------|
 | Program/script:           | `\path\to\pythonw.exe`            | C:\Python310\pythonw.exe                |
-| Add arguments (optional): | `mamba.pyw`                       | `mamba.pyw`                             |
-| Start in (optional):      | the path that you put `mamba.pyw` | the directory that you cloned this repo |
+| Add arguments (optional): | `battery-notify.pyw`              | `battery-notify.pyw`                    |
+| Start in (optional):      | the path that you put `battery-notify.pyw`| the directory that you cloned this repo |
 
 7. Go to `Triggers` and click `New...`
 8. Enter the details in the dialog box that appears:
@@ -50,8 +51,10 @@ Combining with the Task Scheduler, the notification can be regularly shown with 
 
 ## Credit
 
-This script is written by looking into [OpenRazer](https://github.com/openrazer/openrazer), a GNU/Linux driver for controlling razer devices.<br>
-Also, I have referenced the [blog post](https://rsmith.home.xs4all.nl/hardware/setting-the-razer-ornata-chroma-color-from-userspace.html) and the [script](https://github.com/rsmith-nl/scripts/blob/main/set-ornata-chroma-rgb.py) by Roland Smith in the process of writing this script.
+This is a fork of [hsutungyu/razer-mouse-battery-windows:main](https://github.com/hsutungyu/razer-mouse-battery-windows)
+
+In their credit they mentioned that this script was written by looking into [OpenRazer](https://github.com/openrazer/openrazer), a GNU/Linux driver for controlling razer devices.<br>
+Also, they referenced the [blog post](https://rsmith.home.xs4all.nl/hardware/setting-the-razer-ornata-chroma-color-from-userspace.html) and the [script](https://github.com/rsmith-nl/scripts/blob/main/set-ornata-chroma-rgb.py) by Roland Smith in the process of writing this script.
 
 ## How to adapt the Python script for your Razer device
 
@@ -79,6 +82,12 @@ If the script is not working, you could try the following steps:
 - Try closing Razer Synapse
 - Try uninstalling the driver of your mouse in Device Manager, and then replug the USB receiver
 - If the mouse is not responsive after executing the script, replug usb receiver should solve the problem
+
+## TODO
+
+- Abstract and offer alternative to Home Assistant
+- Maybe auto find Mouse version
+- Add Pre-Requisite and screenshot
 
 ## License
 
